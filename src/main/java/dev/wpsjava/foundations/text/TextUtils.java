@@ -5,14 +5,14 @@ import java.util.Set;
 
 public class TextUtils {
 
-    /**
-     * Entfernt alle Zeichen, die keine Buchstaben oder Leerzeichen sind.
-     */
+    // Entfernt alle Zeichen, die keine Buchstaben oder Leerzeichen sind.
     public static String removeNonLetters(String text) {
         StringBuilder cleaned = new StringBuilder();
 
         for (int i = 0; i < text.length(); i++) {
             char c = text.charAt(i);
+
+            // Nur Buchstaben und Leerzeichen behalten
             if (Character.isLetter(c) || Character.isWhitespace(c)) {
                 cleaned.append(c);
             }
@@ -21,17 +21,16 @@ public class TextUtils {
         return cleaned.toString();
     }
 
-    /**
-     * Zählt, wie viele unterschiedliche Wörter in einem Text vorkommen.
-     */
+    // Ermittelt die Anzahl unterschiedlicher Wörter im Text.
     public static int countDistinctWords(String text) {
-        // Sonderzeichen entfernen und alles kleinschreiben
+
+        // Erst bereinigen und in Kleinbuchstaben bringen
         String clean = removeNonLetters(text).toLowerCase();
 
-        // Text in Wörter aufteilen (Trennung an Leerzeichen)
+        // Text in einzelne Wörter zerlegen
         String[] words = clean.split("\\s+");
 
-        // Set sammelt nur eindeutige Einträge
+        // Set speichert automatisch nur eindeutige Werte
         Set<String> distinctWords = new HashSet<>();
 
         for (String word : words) {
@@ -40,7 +39,6 @@ public class TextUtils {
             }
         }
 
-        // Anzahl unterschiedlicher Wörter
         return distinctWords.size();
     }
 }
